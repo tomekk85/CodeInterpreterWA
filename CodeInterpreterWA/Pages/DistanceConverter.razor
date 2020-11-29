@@ -1,0 +1,39 @@
+﻿<div class="form-group">
+    <div class="col-md-4">
+        <div>
+            <label>Meters</label>
+            <input type="number" class="form-control" placeholder="Meters...." @bind="Meters" />
+        </div>
+        <button class="btn btn-primary" @onclick="ConvertDistance">
+            <span class="oi oi-aperture"></span> Convert
+        </button>
+    </div>
+    @if (_inches != null)
+    {
+        <div class="row blockquote mt-5">
+            <span>@Meters m equal to @_inches inches !</span>
+        </div>
+    }
+
+</div>
+
+@code {
+    double? _inches = null;
+    double? _meters = null;
+
+    public double? Meters
+    {
+        get => _meters;
+        set 
+        {
+            _meters = value;
+            ConvertDistance();
+        }
+    }
+
+    private void ConvertDistance()
+    {
+        _inches = Meters/0.0254d;
+    }
+
+}

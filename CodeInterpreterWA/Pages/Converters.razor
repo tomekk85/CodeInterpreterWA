@@ -1,0 +1,44 @@
+﻿@page "/converters"
+
+<h1>Converters</h1>
+<select @bind="@selectedConverterId" class="form-control col-md-4 mb-4">
+    @foreach (var converter in converters)
+    {
+        <option value="@converter.Id">@converter.NameOfCOnverter</option>
+    }
+</select>
+
+@switch (selectedConverterId)
+{
+    case 1:
+        <TimeConverter></TimeConverter>
+        break;
+    case 2:
+        <DistanceConverter></DistanceConverter>
+        break;
+    default:
+        <p>Please select converter</p>
+        break;
+}
+@code {
+    public class Converter
+    {
+        public int Id { get; set; }
+        public string NameOfCOnverter { get; set; }
+        public Converter(int id, string nameOfConverter)
+        {
+            Id = id;
+            NameOfCOnverter = nameOfConverter;
+        }
+
+    }
+
+    readonly List<Converter> converters = new List<Converter>
+{
+        new Converter(1, "Time converter"),
+        new Converter(2, "Distance converter")
+    };
+
+    int selectedConverterId;
+
+}
