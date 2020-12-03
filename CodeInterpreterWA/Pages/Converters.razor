@@ -23,24 +23,14 @@
         <p>Please select converter</p>
         break;
 }
-@code {
-    public class Converter
-    {
-        public int Id { get; set; }
-        public string NameOfCOnverter { get; set; }
-        public Converter(int id, string nameOfConverter)
-        {
-            Id = id;
-            NameOfCOnverter = nameOfConverter;
-        }
 
-    }
+@code {    
 
-    readonly List<Converter> converters = new List<Converter>
+    readonly List<ConverterModel> converters = new List<ConverterModel>
 {
-        new Converter(1, "Time converter"),
-        new Converter(2, "Distance converter"),
-        new Converter(3, "Currency converter")
+        new ConverterModel(1, "Time converter"),
+        new ConverterModel(2, "Distance converter"),
+        new ConverterModel(3, "Currency converter")
     };
 
     int selectedConverterId;
