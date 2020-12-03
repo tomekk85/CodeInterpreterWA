@@ -1,0 +1,52 @@
+﻿<div class="form-group">
+    <div class="col-md-4">
+        <div>
+            <label>Dolars</label>
+            <input type="number" class="form-control" placeholder="Dolars...." @bind="Dolars"  />
+        </div>
+        <div>
+            <label>Rate</label>
+            <input type="number" class="form-control" placeholder="Rate...." step="0.01" @bind="Rate"  />
+        </div>
+        <button class="btn btn-primary" @onclick="ConvertCurrency">
+            <span class="oi oi-aperture"></span> Convert
+        </button>
+    </div>
+    @if (_pln != null)
+    {
+        <div class="row blockquote mt-5">
+            <span>@Dolars USD equals to @_pln pln </span>
+        </div>
+    }
+
+</div>
+
+@code {
+    double? _pln = null;
+    double? _dolars = null;
+    double? _rate = 3.96d;
+
+    public double? Dolars
+    {
+        get => _dolars;
+        set
+        {
+            _dolars = value;
+        }
+    }
+
+    public double? Rate {
+        get => _rate;
+        set
+        {
+            _rate = value;
+        }
+    }
+
+
+    private void ConvertCurrency()
+    {
+        _pln = Convert.ToInt32(Dolars * Rate * 100d)/100d;
+    }
+
+}

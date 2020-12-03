@@ -16,6 +16,9 @@
     case 2:
         <DistanceConverter></DistanceConverter>
         break;
+    case 3:
+        <CurrencyConverter></CurrencyConverter>
+        break;
     default:
         <p>Please select converter</p>
         break;
@@ -36,7 +39,8 @@
     readonly List<Converter> converters = new List<Converter>
 {
         new Converter(1, "Time converter"),
-        new Converter(2, "Distance converter")
+        new Converter(2, "Distance converter"),
+        new Converter(3, "Currency converter")
     };
 
     int selectedConverterId;
