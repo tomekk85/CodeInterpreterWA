@@ -1,14 +1,14 @@
 ﻿@page "/ciphers"
 
 <h1>Ciphers</h1>
-<select @bind="@selectedConverterId" class="form-control col-md-4 mb-4">
+<select @bind="@selectedCipherId" class="form-control col-md-4 mb-4">
     @foreach (var cipher in ciphers)
     {
         <option value="@cipher.Id">@cipher.NameOfCipher</option>
     }
 </select>
 
-@switch (selectedConverterId)
+@switch (selectedCipherId)
 {
     case 1:
         <CeasarCipher></CeasarCipher>
@@ -35,6 +35,6 @@
         new Cipher(1, "Ceasar Cipher")
     };
 
-    int selectedConverterId;
+    int selectedCipherId;
 
 }
