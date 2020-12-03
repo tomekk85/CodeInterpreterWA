@@ -1,0 +1,76 @@
+﻿<div class="form-group">
+    <div class="col-md-4">
+        <div>
+            <label>Message</label>
+            <input type="text" class="form-control" placeholder="Message...." @bind="Message" />
+        </div>
+        <div>
+            <label>Shift</label>
+            <input type="number" min="0" max="25" class="form-control" placeholder="Shift...." @bind="Shift" />
+        </div>
+        <button class="btn btn-primary" @onclick="Encrypt">
+            <span class="oi oi-aperture"></span> Encrypt
+        </button>
+    </div>
+    @if (_shift != null)
+    {
+        <div class="row blockquote mt-5">
+            <span>After encryption:</span> 
+        </div>
+        <div class="row blockquote mt-5">
+            <span>@_encryptedMessage</span>
+        </div>
+    }
+
+</div>
+
+@code {
+    int? _shift = 0;
+    string _message = null;
+    string _encryptedMessage = null;
+
+    public string Message
+    {
+        get => _message;
+        set
+        {
+            _message = value;
+        }
+    }
+
+    public int? Shift
+    {
+        get => _shift;
+        set
+        {
+            _shift = value;
+        }
+    }
+
+    private void Encrypt()
+    {
+        _encryptedMessage = null;
+        foreach (char letter in Message)
+        {
+            if (char.IsLower(letter))
+            {
+                _encryptedMessage += letter + Shift > 'z'
+                    ? Convert.ToChar('a' - 1 + (letter + Shift - 'z'))
+                    : Convert.ToChar(letter + Shift);
+
+            }
+            else if (char.IsUpper(letter))
+            {
+                _encryptedMessage += letter + Shift > 'Z'
+                    ? Convert.ToChar('A' - 1 + (letter + Shift - 'Z'))
+                    : Convert.ToChar(letter + Shift);
+            } else
+            {
+                _encryptedMessage += letter;
+            }
+
+
+        }
+    }
+
+}

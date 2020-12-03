@@ -1,0 +1,40 @@
+﻿@page "/ciphers"
+
+<h1>Ciphers</h1>
+<select @bind="@selectedConverterId" class="form-control col-md-4 mb-4">
+    @foreach (var cipher in ciphers)
+    {
+        <option value="@cipher.Id">@cipher.NameOfCipher</option>
+    }
+</select>
+
+@switch (selectedConverterId)
+{
+    case 1:
+        <CeasarCipher></CeasarCipher>
+        break;    
+    default:
+        <p>Please select cipher</p>
+        break;
+}
+@code {
+    public class Cipher
+    {
+        public int Id { get; set; }
+        public string NameOfCipher { get; set; }
+        public Cipher(int id, string nameOfCipher)
+        {
+            Id = id;
+            NameOfCipher = nameOfCipher;
+        }
+
+    }
+
+    readonly List<Cipher> ciphers = new List<Cipher>
+{
+        new Cipher(1, "Ceasar Cipher")
+    };
+
+    int selectedConverterId;
+
+}
